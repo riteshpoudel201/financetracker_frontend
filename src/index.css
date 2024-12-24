@@ -1,0 +1,9 @@
+@import "./tailwindHead.css";
+@import "flowbite";
+@tailwind utilities;
+
+
+.transaction thead tr{
+    background-color: #0a0a0a !important;
+}
+
