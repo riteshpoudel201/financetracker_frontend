@@ -43,7 +43,7 @@ const fields = [
   },
 ];
 const TransactionForm = () => {
-  const { form, handleChange } = useForm(initialState);
+  const { form, handleChange, loading, setLoading } = useForm(initialState);
   const { fetchTransactions } = useUserContext();
   const [isModelOpen, setIsModelOpen] = useState(false);
 
@@ -51,6 +51,7 @@ const TransactionForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const pending = postTransaction(form);
     toast.promise(pending, {
       pending: "Adding Transaction...",
@@ -67,6 +68,8 @@ const TransactionForm = () => {
      dispatchEvent(event);
 
     }
+    setLoading(false);
+    toast.dismiss();
   };
   return (
     <>
@@ -122,7 +125,7 @@ const TransactionForm = () => {
               );
             })}
 
-            <Button type="submit">Add Transaction</Button>
+            <Button type="submit" disabled={loading}>{loading ? "Adding..." : "Add Transaction"}</Button>
           </form>
         </div>
       </div>
