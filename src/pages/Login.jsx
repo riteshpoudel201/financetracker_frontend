@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import Layout from "../components/common/Layout";
 import { useForm } from "../hooks/useForm";
@@ -9,10 +9,9 @@ import { useUserContext } from "../context/UserContext";
 
 const Login = () => {
   const { setUser } = useUserContext();
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const { form, handleChange, loading, setLoading } = useForm({});
 
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -24,7 +23,7 @@ const navigate = useNavigate();
       if (e.target.remember.checked) {
         localStorage.setItem("token", JSON.stringify(token));
       }
-      setUser({_id, email,name, token });
+      setUser({ _id, email, name, token });
       toast.dismiss();
       navigate("/dashboard");
     }
@@ -39,6 +38,19 @@ const navigate = useNavigate();
           <h1 className="block text-2xl font-bold self-center">
             Login to Finance Tracker
           </h1>
+          <div className="w-full border-[1px] border-white rounded-md px-3 py-2 mt-2 flex flex-col">
+            <h1 className="font-bold underline-offset-8">Test Credentials</h1>
+            <div className="flex flex-col mt-2">
+              <div className="flex gap-1 items-center">
+                <span>Email:</span>
+                <span className="italic">visitor@gmail.com</span>
+              </div>
+              <div className="flex gap-1 items-center">
+                <span>Password:</span>
+                <span className="italic">Visitor@@</span>
+              </div>
+            </div>
+          </div>
         </div>
         <form
           className="flex flex-col gap-4 w-full px-5 py-5 justify-center bg-zinc-200 rounded-tr-lg rounded-br-lg"
@@ -73,10 +85,12 @@ const navigate = useNavigate();
             />
           </div>
           <div className="flex items-center gap-2">
-            <Checkbox id="remember" name="remember" defaultChecked/>
+            <Checkbox id="remember" name="remember" defaultChecked />
             <Label htmlFor="remember">Remember me</Label>
           </div>
-          <Button type="submit" disabled={loading}>{loading ? "Submitting..." : "Submit"}</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Submitting..." : "Submit"}
+          </Button>
         </form>
       </section>
     </Layout>
