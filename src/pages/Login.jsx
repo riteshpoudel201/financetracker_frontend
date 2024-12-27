@@ -28,6 +28,7 @@ const Login = () => {
       navigate("/dashboard");
     }
     setLoading(false);
+    toast.dismiss();
   };
 
   return (
